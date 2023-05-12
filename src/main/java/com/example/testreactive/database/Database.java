@@ -1,12 +1,12 @@
 package com.example.testreactive.database;
 
-import com.example.testreactive.controller.RequestInput;
+import com.example.testreactive.model.Person;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 public interface Database {
-    Mono<RequestInput> save (RequestInput requestInput);
+    Mono<Person> save (Person person);
     Mono<List<String>> list();
     Mono<String> get(String name);
 }

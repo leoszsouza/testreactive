@@ -1,6 +1,6 @@
 package com.example.testreactive.database;
 
-import com.example.testreactive.controller.RequestInput;
+import com.example.testreactive.model.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -15,10 +15,10 @@ public class InMemoryDatabase implements Database{
 
     private static List<String> DATABASE = new CopyOnWriteArrayList<>();
     @Override
-    public Mono<RequestInput> save(RequestInput requestInput) {
+    public Mono<Person> save(Person person) {
         return Mono.fromCallable(() -> {
-            DATABASE.add(requestInput.getName());
-            return requestInput;
+            DATABASE.add(person.getName());
+            return person;
         }).subscribeOn(Schedulers.parallel());
     }
 
